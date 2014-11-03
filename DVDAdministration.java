@@ -25,8 +25,7 @@ class DVDAdministration {
 		System.out.println("The line is not empty");
 		Person p = new Person(line);
 		readDataFromFile(myScanner, p);
-		addPerson(p);
-		
+		addPerson(p);		
 	    }
 	    
 	}
@@ -47,12 +46,15 @@ class DVDAdministration {
 	    return;
 	} else {
 	    if(dvdName.charAt(0) == '*'){
-		addPerson(new Person(in.nextLine()));		
-		addDVD(dvdName, new DVD(dvdName.substring(1)), );
+		nName = in.nextLine();
+		n = new Person(nName);
+		dvd = new DVD(dvdName, p, n);
+		addPerson(n);
+		p.addDVD(dvdName, dvd);
 		readDataFromFile(in, p);
 	    } else {
-		dvd = new DVD(dvdName);	  
-		addDVD(p, dvd);
+			  
+		p.addDVD(dvdName, new DVD(dvdName, p));
 		readDataFromFile(in, p);
 	    }	   
 	}
@@ -65,24 +67,7 @@ class DVDAdministration {
 	    personMap.put(p.toString(), p);
 	}
     }
-    public void addDVD(String dvdName, Person p){
-	System.out.println("Now adding the dvd: " + dvd + " to the person: " + p);
-	DVD dvd = new DVD(dvdName, p);
-	if(personMap.containsValue(p)){	    
-	    p.addDVD(dvd.toString(), dvd);
-	}
-    }
-    public void addDVD(String dvdName, Person p, Person n){
-	System.out.println("Adding the lent out dvd");
-	DVD dvd;
-	if(personMap.containsValue(p)){
-	    dvd = new DVD(dvdName, p, n);
-	    // Add the lent out dvd
-	    p.addDVD(dvd.toString(), dvd, n);
-	    
-	    
-	}
-    }
+      
 
     public void showList(){
 

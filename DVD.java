@@ -10,8 +10,14 @@ class DVD{
     }
     public DVD(String name, Person p, Person n){
 	this.name = name;
-	this.p = p;
-	this.n = n;
+	this.owner = p;
+	this.renter = n;
+    }
+    public boolean isLentOut(){
+	if(renter == null)
+	    return false;
+	return false;
+	
     }
     public String toString(){
 	return this.name;

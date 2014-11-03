@@ -14,10 +14,7 @@ class Person {
     public void addDVD(String name, DVD dvd){
 	if(archive.containsKey(name)){
 	    return;
-	} else {
-	    if(name.charAt(0) == '*'){
-		lArchive.put(name.substring(1), )
-	    }
+	} else {	    
 	    archive.put(name, dvd);
 	}
     }
