@@ -4,12 +4,22 @@ class Person {
     private String name;
     HashMap<String, DVD> archive = new HashMap<>();
     HashMap<String, DVD> lArchive = new HashMap<>();
+    HashMap<String, DVD> bArchive = new HashMap<>();
     
     public Person(String name){
 	this.name = name;
     }
     public String toString(){
 	return this.name;
+    }
+    public int archiveSize(){
+	return archive.size();
+    }
+    public int lArchiveSize(){
+	return lArchive.size();
+    }
+    public int bArchiveSize(){
+	return bArchive.size();
     }
     public boolean addDVD(String name, DVD dvd){
 	if(archive.containsKey(name)){
@@ -27,8 +37,11 @@ class Person {
 	}
     }
     public DVD getDVD(String name){
-	if(this.archive.containsKey(name))
-	    return archive.get(name);
+	if(this.archive.containsKey(name)){
+	    DVD dvd = archive.get(name);
+	    archive.remove(name);
+	    return dvd;
+	}	    
 	return null;
 	
     }
@@ -36,6 +49,8 @@ class Person {
 	if(from.hasDVDInArchive(name)){
 	    DVD dvd = from.getDVD(name);
 	    dvd.setRenter(this);
+	    this.bArchive.put(dvd.toString(), dvd);
+	    from.lArchive.put(dvd.toString(), dvd);
 	    return true;
 	} else {
 	    return false;
