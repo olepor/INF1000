@@ -28,6 +28,9 @@ class DVD{
     public void setRenter(Person p){
 	this.renter = p;
     }
+    public Person getOwner(){
+	return this.owner;
+    }
     public String toString(){
 	return this.name;
     }

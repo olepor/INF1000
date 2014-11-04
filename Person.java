@@ -31,7 +31,7 @@ class Person {
     }
     public void addDVD(String name, DVD dvd, Person n){
 	if(lArchive.containsValue(name)){
-	    return;
+	    
 	} else {
 	    lArchive.put(name, dvd);
 	}
@@ -39,7 +39,7 @@ class Person {
     public DVD getDVD(String name){
 	if(this.archive.containsKey(name)){
 	    DVD dvd = archive.get(name);
-	    archive.remove(name);
+	    // archive.remove(name);
 	    return dvd;
 	}	    
 	return null;
@@ -62,6 +62,26 @@ class Person {
 	return false;
     }
 
+    public boolean hasBorrowedDVD(String name){
+	if(this.bArchive.containsKey(name)){
+	    return true;
+	}
+	return false;
+    }
+
+    public void addReturnedDVD(DVD dvd){
+	if(lArchive.containsKey(dvd.toString())){
+	    
+	}
+    }
+    public DVD handBackDVD(String name){
+	DVD dvd = bArchive.get(name);
+	Person to = dvd.getOwner();
+	to.addDVD(dvd.toString(), dvd, dvd.getRenter());
+	dvd.setRenter(null);
+	return dvd;
+    }
+
     public void showArchive(){
 	for(Map.Entry<String, DVD> entry: archive.entrySet()){
 	    String out = entry.getKey();
@@ -74,4 +94,5 @@ class Person {
 	}
 	System.out.println();
     }
+
 }

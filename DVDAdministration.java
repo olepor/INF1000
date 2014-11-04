@@ -104,6 +104,7 @@ class DVDAdministration {
 	    System.out.println("The person " + p + " has " + p.archiveSize() + " dvd's in his/hers archive, with " + p.lArchiveSize() + "dvd's lent out, and " + p.bArchiveSize() + " dvd's borrowed" );
 	}
     }
+  
 
     public void runAdminProcess(){
 	System.out.println("Hello and welcome to the dvd administration system");
@@ -182,6 +183,38 @@ class DVDAdministration {
 	    case "O":
 		showOverView();
 		break;
+	       
+	    case "V":
+		System.out.println("Who do you want to see an overview for?(Press * for all)");
+		name = myScanner.nextLine();
+		if(name.equals("*")){
+		    showList();
+		} else if(personMap.containsKey(name)){
+		    p = getPerson(name);
+		    p.showArchive();
+		} else {
+		    System.out.println("Sorry, but the person " + name + " was not found in the archive");
+		}
+		break;
+
+	    case "R":
+		System.out.println("who has borrowed the dvd in question?");
+		name = myScanner.nextLine();
+		if(personMap.containsKey(name)){
+		    p = personMap.get(name);
+		    System.out.println("What is the name of the dvd you'd like back?");
+		    dvdName = myScanner.nextLine();
+		    if(p.hasBorrowedDVD(dvdName)){
+			dvd = p.handBackDVD(dvdName);
+			
+			
+		    }
+		} else {
+		    System.out.println("I'm sorry but this is person is not registered in the archive");
+		}
+		
+	    default:
+		System.out.println("Please enter a valid input");
 	    }
 	}while(!userAction.equals("Q"));
     }
