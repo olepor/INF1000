@@ -25,6 +25,9 @@ class DVD{
 	}
 	return null;
     }
+    public void setRenter(Person p){
+	this.renter = p;
+    }
     public String toString(){
 	return this.name;
     }

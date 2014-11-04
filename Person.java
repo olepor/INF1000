@@ -11,11 +11,12 @@ class Person {
     public String toString(){
 	return this.name;
     }
-    public void addDVD(String name, DVD dvd){
+    public boolean addDVD(String name, DVD dvd){
 	if(archive.containsKey(name)){
-	    return;
+	    return false;
 	} else {	    
 	    archive.put(name, dvd);
+	    return true;
 	}
     }
     public void addDVD(String name, DVD dvd, Person n){
@@ -31,15 +32,16 @@ class Person {
 	return null;
 	
     }
-    public void borrowDVD(String name, Person from){
-	if(from.hasDVD(name)){
+    public boolean borrowDVD(String name, Person from){
+	if(from.hasDVDInArchive(name)){
 	    DVD dvd = from.getDVD(name);
-	    this.lArchive.put(dvd.toString(), dvd);
+	    dvd.setRenter(this);
+	    return true;
 	} else {
-	    // Does not have the dvd
+	    return false;
 	}
     }
-    public boolean hasDVD(String name){
+    public boolean hasDVDInArchive(String name){
 	if(this.archive.containsKey(name) && this.archive.get(name).isLentOut() ==  false)
 	    return true;
 	return false;

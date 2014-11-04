@@ -52,6 +52,7 @@ class DVDAdministration {
 		dvd = new DVD(dvdName, p, n);
 		addPerson(n);
 		p.addDVD(dvdName, dvd);
+		n.borrowDVD(dvdName, p);
 		readDataFromFile(in, p);
 	    } else {
 			  
@@ -61,12 +62,19 @@ class DVDAdministration {
 	}
     }
 
-    public void addPerson(Person p){
+    public boolean addPerson(Person p){
 	if(personMap.containsValue(p)){
-	    return;
+	    return false;
 	} else {
 	    personMap.put(p.toString(), p);
+	    return true;
 	}
+    }
+
+    public Person getPerson(String name){
+	if(personMap.contains(name))
+	    return personMap.get(name);
+	return null;
     }
       
 
