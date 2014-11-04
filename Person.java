@@ -25,10 +25,36 @@ class Person {
 	    lArchive.put(name, dvd);
 	}
     }
+    public DVD getDVD(String name){
+	if(this.archive.containsKey(name))
+	    return archive.get(name);
+	return null;
+	
+    }
+    public void borrowDVD(String name, Person from){
+	if(from.hasDVD(name)){
+	    DVD dvd = from.getDVD(name);
+	    this.lArchive.put(dvd.toString(), dvd);
+	} else {
+	    // Does not have the dvd
+	}
+    }
+    public boolean hasDVD(String name){
+	if(this.archive.containsKey(name) && this.archive.get(name).isLentOut() ==  false)
+	    return true;
+	return false;
+    }
 
     public void showArchive(){
 	for(Map.Entry<String, DVD> entry: archive.entrySet()){
-	    System.out.println(entry.getKey());
+	    String out = entry.getKey();
+	    if(archive.get(out).isLentOut()){
+		System.out.println(out);
+		System.out.println(archive.get(out).rentedBy());
+	    } else {
+		System.out.println(out);
+	    }	    
 	}
+	System.out.println();
     }
 }

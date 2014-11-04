@@ -16,8 +16,14 @@ class DVD{
     public boolean isLentOut(){
 	if(renter == null)
 	    return false;
-	return false;
+	return true;
 	
+    }
+    public Person rentedBy(){
+	if(renter != null){
+	    return renter;
+	}
+	return null;
     }
     public String toString(){
 	return this.name;

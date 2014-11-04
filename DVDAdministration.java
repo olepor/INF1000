@@ -46,6 +46,7 @@ class DVDAdministration {
 	    return;
 	} else {
 	    if(dvdName.charAt(0) == '*'){
+		dvdName = dvdName.substring(1);
 		nName = in.nextLine();
 		n = new Person(nName);
 		dvd = new DVD(dvdName, p, n);
